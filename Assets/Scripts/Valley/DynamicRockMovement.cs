@@ -5,8 +5,8 @@ public class DynamicRocksNarrowing : MonoBehaviour
     public Transform player; // Reference to the XR Origin or Camera
     public Transform[] rocks; // Array of all the rocks
     public float moveSpeed = 1f; // Speed at which rocks move inward
-    public float minWidth = 1f; // Minimum allowable width between the rocks
-    public float triggerDistance = 2f; // Z-axis distance for triggering narrowing effect
+    public float minDistanceFromPlayer = 1.5f; // Minimum distance rocks should maintain from player
+    public float triggerDistance = 2f; // Distance along Z-axis for triggering movement
 
     private Vector3[] originalPositions; // Store original positions of rocks
 
@@ -22,10 +22,9 @@ public class DynamicRocksNarrowing : MonoBehaviour
 
     void Update()
     {
-        // Check if the player is aligned with the rocks on the Z-axis
         if (IsPlayerInTriggerZone())
         {
-            MoveRocksInward();
+            MoveRocksTowardsPlayer();
         }
         else
         {
@@ -37,8 +36,7 @@ public class DynamicRocksNarrowing : MonoBehaviour
     {
         foreach (Transform rock in rocks)
         {
-            // If any rock is within the trigger distance along the Z-axis
-            if (Mathf.Abs(player.position.z - rock.position.z) <= triggerDistance)
+            if (Mathf.Abs(player.position.x - rock.position.x) <= triggerDistance) // Trigger check on X-axis
             {
                 return true;
             }
@@ -46,22 +44,21 @@ public class DynamicRocksNarrowing : MonoBehaviour
         return false;
     }
 
-    private void MoveRocksInward()
+    private void MoveRocksTowardsPlayer()
     {
         foreach (Transform rock in rocks)
         {
             float step = moveSpeed * Time.deltaTime;
+            float targetZ = player.position.z; // Move towards player's Z position
 
-            // Determine if the rock is on the left or right of the player
-            if (rock.position.x < player.position.x) // Left side
+            // Ensure the rock does not get too close to the player
+            if (rock.position.z < player.position.z - minDistanceFromPlayer)
             {
-                // Move right towards the player
-                rock.position = Vector3.MoveTowards(rock.position, new Vector3(player.position.x - minWidth / 2, rock.position.y, rock.position.z), step);
+                rock.position = Vector3.MoveTowards(rock.position, new Vector3(rock.position.x, rock.position.y, targetZ - minDistanceFromPlayer), step);
             }
-            else // Right side
+            else if (rock.position.z > player.position.z + minDistanceFromPlayer)
             {
-                // Move left towards the player
-                rock.position = Vector3.MoveTowards(rock.position, new Vector3(player.position.x + minWidth / 2, rock.position.y, rock.position.z), step);
+                rock.position = Vector3.MoveTowards(rock.position, new Vector3(rock.position.x, rock.position.y, targetZ + minDistanceFromPlayer), step);
             }
         }
     }
