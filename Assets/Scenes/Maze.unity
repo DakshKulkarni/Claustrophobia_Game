@@ -299,6 +299,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5937570523071360599, guid: 8f47ab38a39efed498953b812aec7414, type: 3}
+--- !u!208 &425590612
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425590606}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 123.601006, y: 6.6460004, z: 90.786}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -9.38, y: 6.866, z: 6.8840003}
+  m_TimeToStationary: 0.5
 --- !u!1 &452305659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,7 +1418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5d4ac09793809f440b7b595a0c6e3c0a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 86.56
+      value: -42.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5d4ac09793809f440b7b595a0c6e3c0a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1973,6 +1989,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d9940ab48100ec84182c964b0b0a452a, type: 2}
+    - target: {fileID: 5256072196136346353, guid: 8f47ab38a39efed498953b812aec7414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6936506143231473729, guid: 8f47ab38a39efed498953b812aec7414, type: 3}
       propertyPath: m_LocalPosition.z
       value: 39.3
@@ -1984,6 +2004,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5256072196136346353, guid: 8f47ab38a39efed498953b812aec7414, type: 3}
       insertIndex: -1
       addedObject: {fileID: 425590608}
+    - targetCorrespondingSourceObject: {fileID: 5256072196136346353, guid: 8f47ab38a39efed498953b812aec7414, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 425590612}
     - targetCorrespondingSourceObject: {fileID: -3033794102924925750, guid: 8f47ab38a39efed498953b812aec7414, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1969720217}
