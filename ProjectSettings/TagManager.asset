@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Teleport
+  - Throwable
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Interactable
   - Interactable Ignore Ray
   - Body
-  - 
+  - Throwable
   - 
   - 
   - 
